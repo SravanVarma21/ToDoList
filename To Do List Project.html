@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To Do List</title>
+<style>
+h1 {
+    color: red;
+}
+p {
+    color: green;
+}
+</style>
+</head>
+<body>
+<h1>Welcome to my project</h1>
+<p>I am Sravan</p>
+<button style="margin-top: 10px" onClick="getDate()">Click Me</button>
+<h2>To Do List</h2>
+<div>
+<input type="text" id="myInput" placeholder="Enter something">
+<button type="submit" onClick="submitData()">Submit</button>
+</div>
+<div id="output"></div>
+
+<script>
+function getDate() {
+    console.log("Clicked Me");
+}
+
+// Load saved tasks on page load
+window.onload = function() {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    savedTasks.forEach(task => {
+        createTaskElement(task.text, task.done);
+    });
+};
+
+// Create and display a task element
+function createTaskElement(text, done = false) {
+    const itemDiv = document.createElement("div");
+    itemDiv.style.display = "flex";
+    itemDiv.style.alignItems = "center";
+    itemDiv.style.marginTop = "5px";
+
+    const tickBtn = document.createElement("button");
+    tickBtn.textContent = "✓";
+    tickBtn.style.marginRight = "10px";
+    tickBtn.style.cursor = "pointer";
+    if (done) {
+        tickBtn.style.backgroundColor = "lightgreen";
+    }
+
+    const taskText = document.createElement("span");
+    taskText.textContent = text;
+    if (done) {
+        taskText.style.textDecoration = "line-through";
+    }
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginLeft = "10px";
+    deleteBtn.style.cursor = "pointer";
+
+    tickBtn.addEventListener("click", function() {
+        const isDone = taskText.style.textDecoration === "line-through";
+        taskText.style.textDecoration = isDone ? "none" : "line-through";
+        tickBtn.style.backgroundColor = isDone ? "" : "lightgreen";
+        updateTaskInLocalStorage(text, !isDone);
+    });
+
+    deleteBtn.addEventListener("click", function() {
+        itemDiv.remove();
+        deleteTaskFromLocalStorage(text);
+    });
+
+    itemDiv.appendChild(tickBtn);
+    itemDiv.appendChild(taskText);
+    itemDiv.appendChild(deleteBtn);
+
+    document.getElementById("output").appendChild(itemDiv);
+}
+
+// Save new task
+function submitData() {
+    const value = document.getElementById("myInput").value;
+
+    if (value.trim() !== "") {
+        createTaskElement(value, false);
+        saveTaskToLocalStorage(value, false);
+        document.getElementById("myInput").value = "";
+    }
+}
+
+// Store task in localStorage
+function saveTaskToLocalStorage(text, done) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.push({ text, done });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Update done status
+function updateTaskInLocalStorage(text, done) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const updatedTasks = tasks.map(task =>
+        task.text === text ? { ...task, done } : task
+    );
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+}
+
+// Delete task
+function deleteTaskFromLocalStorage(text) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const filteredTasks = tasks.filter(task => task.text !== text);
+    localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+}
+</script>
+</body>
+</html>
