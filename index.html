@@ -1,218 +1,222 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>To Do List</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #ffecd2, #fcb69f);
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
-    }
-
-    .container {
-        background: white;
-        //margin-top: 40px;
-        margin: auto;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-        width: 90%;
-        max-width: 500px;
-    }
-
-    h1 {
-        text-align: center;
-        color: #ff4b2b;
-        margin-bottom: 10px;
-    }
-
-    p {
-        text-align: center;
-        color: #4CAF50;
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        color: #333;
-        margin-bottom: 15px;
-margin-top: 0px;
-    }
-
-    .input-section {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 15px;
-    }
-
-    input[type="text"] {
-        flex: 1;
-        padding: 10px;
-        border: 2px solid #ddd;
-        border-radius: 8px;
-        font-size: 16px;
-    }
-
-    button {
-        padding: 10px 15px;
-        border: none;
-        border-radius: 15px;
-        background: #ff4b2b;
-        color: white;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background 0.3s ease;
-    }
-
-    button:hover {
-        background: #ff1e00;
-    }
-
-    #output div {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #f9f9f9;
-        padding: 8px 10px;
-        margin-top: 5px;
-        border-radius: 8px;
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    #output div span {
-        flex: 1;
-        margin: 0 10px;
-    }
-
-    #output div button {
-        font-size: 14px;
-        padding: 5px 8px;
-    }
-
-    /* Mobile view */
-    @media (max-width: 600px) {
-        .container {
-            width: 95%;
-            padding: 20px;
-	margin: auto 5%;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
         }
+
+        .container {
+            background: white;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff4b2b;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+            margin-top: 0px;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
         input[type="text"] {
-            font-size: 14px;
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
         }
+
         button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 15px;
+            background: #ff4b2b;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #ff1e00;
+        }
+
+        #output div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f9f9f9;
+            padding: 8px 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #output div span {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        #output div button {
             font-size: 14px;
-            padding: 8px 12px;
+            padding: 5px 8px;
         }
-    }
 
-    /* Tablet view */
-    @media (min-width: 601px) and (max-width: 1024px) {
-        .container {
-            max-width: 600px;
-        }
-    }
+        /* Mobile view */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+                margin: auto 5%;
+            }
 
-    /* Laptop/Desktop view */
-    @media (min-width: 1025px) {
-        .container {
-            max-width: 700px;
+            input[type="text"] {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
         }
-    }
-</style>
+
+        /* Tablet view */
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .container {
+                max-width: 600px;
+            }
+        }
+
+        /* Laptop/Desktop view */
+        @media (min-width: 1025px) {
+            .container {
+                max-width: 700px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
-<!--
+    <div class="container">
+        <!--
     <h1>Welcome to my project</h1>
     <p>I am Sravan</p>
     <button style="margin-bottom: 15px" onClick="getDate()">Click Me</button>
 -->
-    <h2>To Do List</h2>
-    <div class="input-section">
-        <input type="text" id="myInput" placeholder="Enter something">
-        <button type="submit" onClick="submitData()">Add</button>
+        <h2>To Do List</h2>
+        <div class="input-section">
+            <input type="text" id="myInput" placeholder="Enter something">
+            <button type="submit" onClick="submitData()">Add</button>
+        </div>
+        <div id="output"></div>
     </div>
-    <div id="output"></div>
-</div>
 
-<script>
-function getDate() {
-    console.log("Clicked Me");
-}
+    <script>
+        function getDate() {
+            console.log("Clicked Me");
+        }
 
-window.onload = function() {
-    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    savedTasks.forEach(task => {
-        createTaskElement(task.text, task.done);
-    });
-};
+        window.onload = function () {
+            const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            savedTasks.forEach(task => {
+                createTaskElement(task.text, task.done);
+            });
+        };
 
-function createTaskElement(text, done = false) {
-    const itemDiv = document.createElement("div");
+        function createTaskElement(text, done = false) {
+            const itemDiv = document.createElement("div");
 
-    const tickBtn = document.createElement("button");
-    tickBtn.textContent = "✓";
-    tickBtn.style.backgroundColor = done ? "lightgreen" : "";
-    tickBtn.addEventListener("click", function() {
-        const isDone = taskText.style.textDecoration === "line-through";
-        taskText.style.textDecoration = isDone ? "none" : "line-through";
-        tickBtn.style.backgroundColor = isDone ? "" : "lightgreen";
-        updateTaskInLocalStorage(text, !isDone);
-    });
+            const tickBtn = document.createElement("button");
+            tickBtn.textContent = "✓";
+            tickBtn.style.backgroundColor = done ? "lightgreen" : "";
+            tickBtn.addEventListener("click", function () {
+                const isDone = taskText.style.textDecoration === "line-through";
+                taskText.style.textDecoration = isDone ? "none" : "line-through";
+                tickBtn.style.backgroundColor = isDone ? "" : "lightgreen";
+                updateTaskInLocalStorage(text, !isDone);
+            });
 
-    const taskText = document.createElement("span");
-    taskText.textContent = text;
-    if (done) taskText.style.textDecoration = "line-through";
+            const taskText = document.createElement("span");
+            taskText.textContent = text;
+            if (done) taskText.style.textDecoration = "line-through";
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "X";
-    deleteBtn.style.backgroundColor = "#d9534f";
-    deleteBtn.addEventListener("click", function() {
-        itemDiv.remove();
-        deleteTaskFromLocalStorage(text);
-    });
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "X";
+            deleteBtn.style.backgroundColor = "#d9534f";
+            deleteBtn.addEventListener("click", function () {
+                itemDiv.remove();
+                deleteTaskFromLocalStorage(text);
+            });
 
-    itemDiv.appendChild(tickBtn);
-    itemDiv.appendChild(taskText);
-    itemDiv.appendChild(deleteBtn);
-    document.getElementById("output").appendChild(itemDiv);
-}
+            itemDiv.appendChild(tickBtn);
+            itemDiv.appendChild(taskText);
+            itemDiv.appendChild(deleteBtn);
+            document.getElementById("output").appendChild(itemDiv);
+        }
 
-function submitData() {
-    const value = document.getElementById("myInput").value;
-    if (value.trim() !== "") {
-        createTaskElement(value, false);
-        saveTaskToLocalStorage(value, false);
-        document.getElementById("myInput").value = "";
-    }
-}
+        function submitData() {
+            const value = document.getElementById("myInput").value;
+            if (value.trim() !== "") {
+                createTaskElement(value, false);
+                saveTaskToLocalStorage(value, false);
+                document.getElementById("myInput").value = "";
+            }
+        }
 
-function saveTaskToLocalStorage(text, done) {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    tasks.push({ text, done });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+        function saveTaskToLocalStorage(text, done) {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            tasks.push({ text, done });
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
 
-function updateTaskInLocalStorage(text, done) {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const updatedTasks = tasks.map(task =>
-        task.text === text ? { ...task, done } : task
-    );
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-}
+        function updateTaskInLocalStorage(text, done) {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            const updatedTasks = tasks.map(task =>
+                task.text === text ? { ...task, done } : task
+            );
+            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+        }
 
-function deleteTaskFromLocalStorage(text) {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const filteredTasks = tasks.filter(task => task.text !== text);
-    localStorage.setItem("tasks", JSON.stringify(filteredTasks));
-}
-</script>
+        function deleteTaskFromLocalStorage(text) {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            const filteredTasks = tasks.filter(task => task.text !== text);
+            localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+        }
+    </script>
 </body>
+
 </html>
